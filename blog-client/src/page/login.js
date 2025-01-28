@@ -1,20 +1,32 @@
-import {useEffect} from "react";
+import { useEffect, useState } from "react";
 
 export default function Login() {
+    const [userData, setUserData] = useState(null); // 상태로 선언
 
     useEffect(() => {
         init();
     }, []);
 
     async function init() {
-        const data = await fetch("http://localhost:8080/member");
-        const json = await data.text();
-        console.log(json);
+        const response = await fetch("http://localhost:8080/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                userId: "shoppingAdmin",
+                password: "1234",
+            }),
+        });
+        const data = await response.json();
+        console.log(data);
+
+        setUserData(data);
     }
 
     return (
         <div>
-            Login Page
+            {userData ? <p>{userData.userName}</p> : <p>Loading...</p>}
         </div>
     );
 }
