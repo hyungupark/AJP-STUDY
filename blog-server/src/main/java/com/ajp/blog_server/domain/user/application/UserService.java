@@ -1,5 +1,8 @@
 package com.ajp.blog_server.domain.user.application;
 
+import com.ajp.blog_server.domain.user.dto.UserRequest;
+import com.ajp.blog_server.domain.user.dto.UserResponse;
+
 /**
  * 사용자 서비스
  *<p>
@@ -7,4 +10,6 @@ package com.ajp.blog_server.domain.user.application;
  *</p>
  */
 public interface UserService {
+
+    UserResponse getUserInfoForLogin(UserRequest userRequest);
 }

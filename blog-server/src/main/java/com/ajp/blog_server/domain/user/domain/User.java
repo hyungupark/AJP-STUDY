@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.Getter;
 
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -19,12 +20,14 @@ import java.util.Date;
  * <p>
  * 작성일: 2025-01-27
  */
+@Getter
 @Entity
 @Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @Column(name = "user_id")
+    private String userId;
 
     @Column(nullable = false, length = 50)
     private String username;
